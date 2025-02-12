@@ -1,9 +1,10 @@
 package online.muydinov.quizservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import online.muydinov.questionservice.dto.ResponseDTO;
-import online.muydinov.questionservice.service.QuizService;
-import online.muydinov.questionservice.wrapper.QuestionWrapper;
+import online.muydinov.quizservice.dto.QuizDto;
+import online.muydinov.quizservice.dto.ResponseDTO;
+import online.muydinov.quizservice.service.QuizService;
+import online.muydinov.quizservice.wrapper.QuestionWrapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,8 @@ public class QuizController {
     private final QuizService quizService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title) {
-        return quizService.createQuiz(category, numQ, title);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto) {
+        return quizService.createQuiz(quizDto.getCategoryName(),quizDto.getNumQuestions(),quizDto.getTitle());
     }
 
     @GetMapping("/get/{id}")

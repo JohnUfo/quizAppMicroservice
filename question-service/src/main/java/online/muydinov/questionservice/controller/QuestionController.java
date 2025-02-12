@@ -55,12 +55,12 @@ public class QuestionController {
         return questionService.getQuestionsForQuiz(category, numQuestions);
     }
 
-    @PostMapping("/getQuestions")
+    @PostMapping("/questions/getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Long> questionIds) {
         return questionService.getQuestionsFromId(questionIds);
     }
 
-    @PostMapping("/getScore")
+    @PostMapping("questions/getScore")
     public ResponseEntity<Integer> getScore(@RequestBody List<ResponseDTO> responseDTO) {
         return questionService.getScore(responseDTO);
     }
