@@ -9,15 +9,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="registery-service" />
       </profile>
-      <profile name="Annotation profile for quiz-service" enabled="true">
+      <profile name="Annotation profile for question-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
-        <module name="quiz-service" />
         <module name="question-service" />
+        <module name="quiz-service" />
       </profile>
     </annotationProcessing>
   </component>

@@ -3,11 +3,11 @@ package online.muydinov.quizservice.service;
 import lombok.RequiredArgsConstructor;
 import online.muydinov.quizservice.dto.ResponseDTO;
 import online.muydinov.quizservice.entity.Quiz;
+import online.muydinov.quizservice.feign.QuizInterface;
 import online.muydinov.quizservice.repository.QuizRepository;
 import online.muydinov.quizservice.wrapper.QuestionWrapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -19,12 +19,13 @@ import static org.springframework.http.HttpStatus.OK;
 public class QuizService {
 
     private final QuizRepository quizRepository;
+    private QuizInterface quizInterface;
 
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
 
-        List<Long> questions = //  RestTemplate http://localhost:8080/questions/generate
-
-
+        List<Long> questions = quizInterface.getQuestionsForQuiz(category, numQ).getBody();
+        Quiz quiz = new Quiz(null, title, questions);
+        quizRepository.save(quiz);
         return new ResponseEntity<>("success", CREATED);
     }
 
