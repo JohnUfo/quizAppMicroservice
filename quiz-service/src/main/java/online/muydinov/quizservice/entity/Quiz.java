@@ -1,4 +1,4 @@
-package online.muydinov.questionservice.entity;
+package online.muydinov.quizservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

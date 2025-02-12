@@ -2,10 +2,12 @@
 package online.muydinov.questionservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import online.muydinov.questionservice.dto.ResponseDTO;
+import online.muydinov.questionservice.entity.Question;
 import online.muydinov.questionservice.service.QuestionService;
+import online.muydinov.questionservice.wrapper.QuestionWrapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import online.muydinov.questionservice.entity.Question;
 
 import java.util.List;
 
@@ -46,5 +48,20 @@ public class QuestionController {
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestion(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/generate")
+    public ResponseEntity<List<Long>> getQuestionsForQuiz(@RequestParam String category, @RequestParam Integer numQuestions) {
+        return questionService.getQuestionsForQuiz(category, numQuestions);
+    }
+
+    @PostMapping("/getQuestions")
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Long> questionIds) {
+        return questionService.getQuestionsFromId(questionIds);
+    }
+
+    @PostMapping("/getScore")
+    public ResponseEntity<Integer> getScore(@RequestBody List<ResponseDTO> responseDTO) {
+        return questionService.getScore(responseDTO);
     }
 }

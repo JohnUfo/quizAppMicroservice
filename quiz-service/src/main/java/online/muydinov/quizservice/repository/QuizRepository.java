@@ -1,4 +1,4 @@
-package online.muydinov.questionservice.repository;
+package online.muydinov.quizservice.repository;
 
 import online.muydinov.questionservice.entity.Quiz;
 import org.springframework.data.jpa.repository.JpaRepository;

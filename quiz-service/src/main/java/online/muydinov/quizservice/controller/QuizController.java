@@ -1,4 +1,4 @@
-package online.muydinov.questionservice.controller;
+package online.muydinov.quizservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import online.muydinov.questionservice.dto.ResponseDTO;
