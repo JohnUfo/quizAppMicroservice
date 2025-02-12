@@ -30,20 +30,9 @@ public class QuizService {
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuestionsByQuizId(Long id) {
-//        return quizRepository.findById(id)
-//                .map(quiz -> quiz.getQuestions().stream()
-//                        .map(q -> QuestionWrapper.builder()
-//                                .id(q.getId())
-//                                .title(q.getTitle())
-//                                .option1(q.getOption1())
-//                                .option2(q.getOption2())
-//                                .option3(q.getOption3())
-//                                .option4(q.getOption4())
-//                                .build())
-//                        .toList())
-//                .map(questions -> new ResponseEntity<>(questions, OK))
-//                .orElseGet(() -> ResponseEntity.notFound().build());
-        return new ResponseEntity<>(OK);
+        Quiz quiz = quizRepository.findById(id).get();
+        List<Long> questionIds = quiz.getQuestionIds();
+        return quizInterface.getQuestionsFromId(questionIds);
     }
 
     public ResponseEntity<Integer> submitQuiz(Long quizId, List<ResponseDTO> responseDto) {
