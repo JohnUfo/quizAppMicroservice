@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/questions")
 @RequiredArgsConstructor
 public class QuestionController {
     private final QuestionService questionService;
 
-    @GetMapping("/questions")
+    @GetMapping
     public ResponseEntity<List<Question>> getAllQuestions() {
         return ResponseEntity.ok(questionService.getAllQuestions());
     }
 
-    @GetMapping("/questions/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
         return questionService.getQuestionById(id)
                 .map(ResponseEntity::ok)
@@ -34,17 +34,17 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.getQuestionsByCategory(category));
     }
 
-    @PostMapping("/questions")
+    @PostMapping("/addQuestion")
     public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
         return ResponseEntity.status(201).body(questionService.addQuestion(question));
     }
 
-    @PutMapping("/questions/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
         return ResponseEntity.ok(questionService.updateQuestion(id, question));
     }
 
-    @DeleteMapping("/questions/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestion(id);
         return ResponseEntity.noContent().build();
@@ -55,12 +55,12 @@ public class QuestionController {
         return questionService.getQuestionsForQuiz(category, numQuestions);
     }
 
-    @PostMapping("/questions/getQuestions")
+    @PostMapping("/getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Long> questionIds) {
         return questionService.getQuestionsFromId(questionIds);
     }
 
-    @PostMapping("questions/getScore")
+    @PostMapping("/getScore")
     public ResponseEntity<Integer> getScore(@RequestBody List<ResponseDTO> responseDTO) {
         return questionService.getScore(responseDTO);
     }

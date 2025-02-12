@@ -19,11 +19,11 @@ import static org.springframework.http.HttpStatus.OK;
 public class QuizService {
 
     private final QuizRepository quizRepository;
-    private QuizInterface quizInterface;
+    private final QuizInterface quizInterface;
 
-    public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
+    public ResponseEntity<String> createQuiz(String category, int numQuestions, String title) {
 
-        List<Long> questions = quizInterface.getQuestionsForQuiz(category, numQ).getBody();
+        List<Long> questions = quizInterface.getQuestionsForQuiz(category, numQuestions).getBody();
         Quiz quiz = new Quiz(null, title, questions);
         quizRepository.save(quiz);
         return new ResponseEntity<>("success", CREATED);
