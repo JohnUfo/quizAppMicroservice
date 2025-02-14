@@ -36,17 +36,6 @@ public class QuizService {
     }
 
     public ResponseEntity<Integer> submitQuiz(Long quizId, List<ResponseDTO> responseDto) {
-//        Quiz quiz = quizRepository.findById(quizId).get();
-//        List<Question> questions = quiz.getQuestions();
-        int right = 0, i = 0;
-//
-//        for (ResponseDTO responseDTO : responseDto) {
-//            if (responseDTO.getResponse().equals(questions.get(i).getCorrectAnswer())) {
-//                right++;
-//                System.out.println(responseDTO.getResponse());
-//            }
-//            i++;
-//        }
-        return new ResponseEntity<>(right, OK);
+        return quizInterface.getScore(responseDto);
     }
 }
